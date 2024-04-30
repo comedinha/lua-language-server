@@ -59,7 +59,7 @@ function mt:getSets(suri)
     local cache = self.setsCache[cacheUri]
     for uri, link in pairs(self.links) do
         if link.sets then
-            if scp:isVisible(uri) then
+            if scp:isVisible(uri) and (not uri:find("const.*.lua") or suri == uri) then
                 for _, source in ipairs(link.sets) do
                     cache[#cache+1] = source
                 end
